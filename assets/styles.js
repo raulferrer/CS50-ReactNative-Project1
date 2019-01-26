@@ -43,6 +43,7 @@ export default StyleSheet.create({
           flex: 0,
           flexDirection: 'row',
           justifyContent: 'center',
+          alignItems: 'center',
           width: 220,
         },
         timerselector: {

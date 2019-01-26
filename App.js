@@ -130,7 +130,7 @@ export default class App extends React.Component {
   }
 
   decrementPauseSeconds = () => {
-    if (this.state.pauseSeconds < 59) {
+    if (this.state.pauseSeconds > 0) {
       this.setState(prevState => ({pauseSeconds: prevState.pauseSeconds - 1}))
     }
 
