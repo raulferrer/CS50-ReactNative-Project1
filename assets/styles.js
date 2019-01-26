@@ -14,7 +14,7 @@ export default StyleSheet.create({
           flex: 0,
           justifyContent: 'center',
           height: 60,
-          marginBottom: 25,
+          marginBottom: 0,
         },
         titleText: {
           flex: 0,

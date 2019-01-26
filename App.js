@@ -41,6 +41,7 @@ export default class App extends React.Component {
       } else if (this.state.status === "pause") {
         this.setState(prevState => ({timer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
         this.setState(prevState => ({status: "work"}))
+        this.stopCounter()
       }
     }
   }
@@ -60,81 +61,65 @@ export default class App extends React.Component {
   incrementWorkingTimeMinutes = () => {
     if (this.state.workingMinutes < 59) {
       this.setState(prevState => ({workingMinutes: prevState.workingMinutes + 1}))
+      this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     }
 
-    this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
-
-    if (this.state.stopped) {
-      this.resetCounter()
-    }
+    if (this.state.stopped) { this.resetCounter() }
   }
 
   incrementWorkingTimeSeconds = () => {
     if (this.state.workingSeconds < 59) {
       this.setState(prevState => ({workingSeconds: prevState.workingSeconds + 1}))
+      this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     }
-
-    this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     
-    if (this.state.stopped) {
-      this.resetCounter()
-    }
+    if (this.state.stopped) { this.resetCounter() }
   }
 
   decrementWorkingTimeMinutes = () => {
     if (this.state.workingMinutes > 0) {
       this.setState(prevState => ({workingMinutes: prevState.workingMinutes - 1}))
+      this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     }
-
-    this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
   
-    if (this.state.stopped) {
-      this.resetCounter()
-    }
+    if (this.state.stopped) { this.resetCounter() }
   }
 
   decrementWorkingTimeSeconds = () => {
     if (this.state.workingSeconds > 0) {
       this.setState(prevState => ({workingSeconds: prevState.workingSeconds - 1}))
+      this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     }
-
-    this.setState(prevState => ({workingTimer: prevState.workingMinutes * 60 + prevState.workingSeconds}))
     
-    if (this.state.stopped) {
-      this.resetCounter()
-    }
+    if (this.state.stopped) { this.resetCounter() }
   }
 
   incrementPauseMinutes = () => {
     if (this.state.pauseMinutes < 59) {
       this.setState(prevState => ({pauseMinutes: prevState.pauseMinutes + 1}))
+      this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
     }
-
-    this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
   }
 
   incrementPauseSeconds = () => {
     if (this.state.pauseSeconds < 59) {
       this.setState(prevState => ({pauseSeconds: prevState.pauseSeconds + 1}))
+      this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
     }
-
-    this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
   }
 
   decrementPauseMinutes = () => {
     if (this.state.pauseMinutes > 0) {
       this.setState(prevState => ({pauseMinutes: prevState.pauseMinutes - 1}))
+      this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
     }
-
-    this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
   }
 
   decrementPauseSeconds = () => {
     if (this.state.pauseSeconds > 0) {
       this.setState(prevState => ({pauseSeconds: prevState.pauseSeconds - 1}))
+      this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
     }
-
-    this.setState(prevState => ({pauseTimer: prevState.pauseMinutes * 60 + prevState.pauseSeconds}))
   }
   
   render() {
